@@ -1,0 +1,63 @@
+#include <iostream>
+
+using namespace std;
+
+const int N = 5;
+struct Check{
+    int CheckNum;
+    string CheckMemo;
+    float CheckAmount;
+};
+
+class CheckBook {
+private:
+    float balance, lastDeposit;
+    Check checks[N];
+    int numOfChecks;
+    const int checkLimit;
+public:
+    CheckBook() : balance(0), lastDeposit(0), numOfChecks(0), checkLimit(N) {}
+    CheckBook(float initialBalance) : balance(initialBalance), lastDeposit(0), numOfChecks(0), checkLimit(N) {}
+
+    void deposit(float amount) {
+        balance += amount;
+        lastDeposit = amount;
+    }
+    void displayChecks() {
+        cout << "Check History:" << endl;
+        for (int i = numOfChecks - 1; i >= 0; --i) {
+            cout << "Check #" << checks[i].CheckNum << ": " << checks[i].CheckMemo << " - Amount: $" << checks[i].CheckAmount << endl;
+        }
+    }
+
+    bool writeCheck(float amount) {
+        if (amount <= balance && numOfChecks < checkLimit) {
+            cout << "Balance: $" << balance << endl;
+            cout << "Enter details for the check:" << endl;
+            cout << "Memo: " ;
+            string memo;
+            getline(cin, memo);
+            checks[numOfChecks].CheckNum = numOfChecks + 1;
+            checks[numOfChecks].CheckMemo = memo;
+            checks[numOfChecks].CheckAmount = amount;
+            balance -= amount;
+            numOfChecks++;
+
+            return true;
+        } else {
+            cout << "Your balance is too low!" << endl;
+            cout << "Remaining Balance: " << balance;
+            return false;
+        }
+    }
+};
+
+int main() {
+    CheckBook myCheckBook;
+
+    myCheckBook.deposit(1000);
+    myCheckBook.writeCheck(100);
+    myCheckBook.writeCheck(2000);
+    myCheckBook.displayChecks();
+    return 0;
+}
