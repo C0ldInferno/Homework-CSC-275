@@ -1,0 +1,19 @@
+
+#include "kadenwaVec.h"
+#include <iostream>
+
+using namespace std;
+
+namespace kadenwa {
+    void Vec::display() const {
+        cout << "(" << x << "," << y << ")";
+    }
+
+    void Vec::displayEquality(const Vec &v) const {
+        if (*this == v) {
+            cout << "Vectors are equal.";
+        } else {
+            cout << "Vectors are not equal.";
+        }
+    }
+}
