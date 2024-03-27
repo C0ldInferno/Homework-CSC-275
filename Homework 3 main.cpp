@@ -1,11 +1,6 @@
 #include <iostream>
 #include "Person.h"
 
-// My github is https://github.com/C0ldInferno/Homework-CSC-275 (This is my online username, but my uniqname is displayed)
-// There is homework from before on this, and some of the labs we submitted.
-// I will include this link on all future homework assignments.
-
-
 using namespace std;
 
 class Mother : public Person {
